@@ -13,6 +13,22 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      width: {
+        '40': '40px',
+        'fitContent':  'fit-content'
+      },
+      height: {
+        '10': '10px', 
+      },
+      colors: {
+        customGray: '#F2F6FA',
+      },
+      fontFamily: {
+        gotham: ['Gotham Book', 'sans-serif'], 
+      },
+      boxShadow: {
+        custom: '0px 3px 6px #00000029',
+      },
     },
   },
   plugins: [],

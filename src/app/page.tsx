@@ -1,84 +1,41 @@
-import React from "react";
-import { Card, Image } from "./card";
+"use client";
+import React, { useState } from "react";
+import { Card } from "./card";
+import { imageObjectList } from "./mockdata";
 
 const Home = () => {
-  const imageObjectList: Image[] = [
-    {
-      imageSrc: "gaming-pc-01-Y60-002-Main-2400.webp",
-      name: "Creator RDY Y40BG201",
-      operatingSystem: "Windows 11 Pro",
-      processor: "Intel® Core™ i9-13900KF CPU",
-      graphicsCard: "GeForce RTX 4090 - 24GB",
-      storage: "2TB M.2 NVMe GEN4 SSD",
-      ram: "32GB DDR5-6000MHz RGB RAM",
-      discount: "SAVE $200",
-      price: "$3,549",
-      oldprice: "$3,999",
-      starting: "Starting at $87.22/mo with",
-      shipping: " Free Shipping",
-      delivery: "Delivery By Friday, Jul 7",
-      buttonType:'Buy now',
-      affirm:'Affirm_logo.svg.png'
-    },
-    {
-      imageSrc: "gaming-pc-01-Y60-002-Main-2400.webp",
-      name: "Gaming RDY SLMRG211",
-      operatingSystem: "Windows 11 Pro",
-      processor: "Intel® Core™ i9-13900KF CPU",
-      graphicsCard: "GeForce RTX 4090 - 24GB",
-      storage: "2TB M.2 NVMe GEN4 SSD",
-      ram: "32GB DDR5-6000MHz RGB RAM",
-      discount: "SAVE $200",
-      price: "$3,549",
-      oldprice: "$3,999",
-      starting: "Starting at $87.22/mo with",
-      shipping: " Free Shipping",
-      delivery: "Delivery By Friday, Jul 7",
-      buttonType:'Buy now',
-      affirm:'Affirm_logo.svg.png'
-    },
-    {
-      imageSrc: "gaming-pc-01-Y60-002-Main-2400.webp",
-      name: "Intel 13th Gen Performance Daily",
-      operatingSystem: "Windows 11 Pro",
-      processor: "Intel® Core™ i9-13900KF CPU",
-      graphicsCard: "GeForce RTX 4090 - 24GB",
-      storage: "2TB M.2 NVMe GEN4 SSD",
-      ram: "32GB DDR5-6000MHz RGB RAM",
-      discount: "SAVE $200",
-      price: "$3,549",
-      oldprice: "$3,999",
-      starting: "Starting at $87.22/mo with",
-      shipping: " Free Shipping",
-      delivery: "Delivery By Friday, Jul 7",
-      buttonType:'Customize',
-      affirm:'Affirm_logo.svg.png'
-    },
-    {
-      imageSrc: "gaming-pc-01-Y60-002-Main-2400.webp",
-      name: "AMD Ryzen 9 Ultra Gaming Daily Deal",
-      operatingSystem: "Windows 11 Pro",
-      processor: "Intel® Core™ i9-13900KF CPU",
-      graphicsCard: "GeForce RTX 4090 - 24GB",
-      storage: "2TB M.2 NVMe GEN4 SSD",
-      ram: "32GB DDR5-6000MHz RGB RAM",
-      discount: "SAVE $200",
-      price: "$3,549",
-      oldprice: "$3,999",
-      starting: "Starting at $87.22/mo with",
-      shipping: " Free Shipping",
-      delivery: "Delivery By Friday, Jul 7",
-      buttonType:'Customize',
-      affirm:'Affirm_logo.svg.png'
-    },
-  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const maxIndex = imageObjectList.length - 4;
+  const slide = (direction: string) => {
+    if (direction === "left" && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      console.log('left')
+    } else if (direction === "right" && currentIndex < maxIndex) {
+      setCurrentIndex(currentIndex + 1);
+      console.log('right')
+    }
+  };
 
   return (
     <div className="text-center mt-20">
-      <h1 className="text-3xl font-bold">Best Seller Gaming PC</h1>
-      <p className="text-2xl font-bold">Prebuilt & Custom</p>
+      <h1 className="text-3xl font-gotham">Best Seller Gaming PC</h1>
+      <p className="text-2xl font-gotham">Prebuilt & Custom</p>
+      <div className="">
+        <button
+          onClick={() => slide("left")}
+          className=" border-slate-100 shadow-custom m-2"
+        >
+          〈
+        </button>
+        <button
+          onClick={() => slide("right")}
+          className=" border-slate-100 shadow-custom "
+        >
+          〉
+        </button>
+      </div>
       <div className="flex flex-nowrap overflow-x-auto m-20">
-        {imageObjectList.map((image) => (
+        {imageObjectList.slice(currentIndex, currentIndex + 4).map((image) => (
           <Card key={image.name} imageList={[image]} />
         ))}
       </div>
