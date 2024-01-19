@@ -7,29 +7,20 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import useWindowDimensions from "./useWindow";
 import { useSwipeable } from "react-swipeable";
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const maxIndex = imageObjectList.length - 4;
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth > 1024);
     };
-  
-    // Set up the event listener
-    window.addEventListener('resize', handleResize);
-  
-    // Call the handler right away so state gets updated with initial window size
     handleResize();
-  
-    // Return a function to clean up the event listener
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // the slide loops the images
@@ -50,10 +41,16 @@ const Home = () => {
   };
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => setCurrentIndex(currentIndex => (currentIndex + 1) % imageObjectList.length),
-    onSwipedRight: () => setCurrentIndex(currentIndex => (currentIndex === 0 ? imageObjectList.length - 1 : currentIndex - 1)),
+    onSwipedLeft: () =>
+      setCurrentIndex(
+        (currentIndex) => (currentIndex + 1) % imageObjectList.length
+      ),
+    onSwipedRight: () =>
+      setCurrentIndex((currentIndex) =>
+        currentIndex === 0 ? imageObjectList.length - 1 : currentIndex - 1
+      ),
     trackTouch: true,
-    trackMouse: false // Note: trackMouse is not typically needed for mobile, and it's better to be disabled to avoid desktop mouse swipe
+    trackMouse: false, //better to be disabled to avoid desktop mouse swipe
   });
 
   const desktopDisplay = () => {
@@ -94,7 +91,7 @@ const Home = () => {
 
   const mobileDisplay = () => {
     return (
-      <div className="flex flex-nowrap m-2"  {...swipeHandlers}>
+      <div className="flex flex-nowrap m-2" {...swipeHandlers}>
         {imageObjectList.slice(currentIndex, currentIndex + 1).map((image) => (
           <Card key={image.name} imageList={[image]} />
         ))}
