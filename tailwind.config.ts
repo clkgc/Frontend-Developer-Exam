@@ -15,9 +15,11 @@ const config: Config = {
       },
       width: {
         '40': '40px',
+        '45': '45px',
         'fitContent':  'fit-content'
       },
       height: {
+        '45': '45px',
         '10': '10px', 
       },
       colors: {

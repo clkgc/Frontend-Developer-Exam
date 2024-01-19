@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Image Slider Project - Frontend Exam
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This React-based application, " Frontend Exam", is designed for iBUYPOWER to showcase a dynamic image slider featuring a "Best Seller Gaming PC" gallery. It emphasizes a responsive design and an infinite sliding feature.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Image Slider**: Navigate through a collection of gaming PC images.
+- **Responsive Layout**: Adapts to different screen sizes for a seamless cross-device experience.
+- **Infinite Loop Sliding**: Slide continuously through images in both directions.
+- **Interactive Buttons**: Navigate left and right through the image collection.
+- **Interactive swipe**: Swipe left and right.
+- **Card Component**: Displays individual gaming PC details in a reusable format.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **React**: For building the user interface.
+- **Tailwind CSS**: For styling and responsive design.
+- **Next.js Image Component**: Optimizes image loading.
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+- **RootLayout**: Sets up the basic HTML structure and styles.
+- **Home**: Main page featuring the image slider.
+- **Card**: Represents individual items in the image slider.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### RootLayout Component
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Establishes the basic layout and global styles.
 
-## Deploy on Vercel
+### Home Component
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Manages the state for the current index and handles sliding logic for infinite navigation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Card Component
+
+Renders individual gaming PC details, designed for reusability and adaptability.
+
+## Usage
+
+Click on the left or right arrow buttons to navigate through the image slider. The slider allows for infinite exploration of the gallery.
+
+## Development Setup
+
+1. Clone the repository.
+2. Install dependencies: `npm install` or `yarn`.
+3. Run locally: `npm start` or `yarn start`.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

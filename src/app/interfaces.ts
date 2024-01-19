@@ -6,6 +6,7 @@ export interface Image {
     processor: string;
     graphicsCard: string;
     storage: string;
+    geForce:string;
     ram: string;
     discount: string;
     price: string;
