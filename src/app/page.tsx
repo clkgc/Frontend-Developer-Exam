@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "./card";
 import { cardObjectList } from "./mockdata";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,7 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(true);
 
+
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth > 1024);
@@ -21,6 +22,8 @@ const Home = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+
 
   const getCardsToDisplay = (cardsToShow: number) => {
     let endIndex = currentIndex + cardsToShow;
@@ -64,41 +67,25 @@ const Home = () => {
   });
 
   const desktopDisplay = () => {
-    const cardsToDisplay = getCardsToDisplay(4);
-
     return (
-      <div className="text-center mt-20 ">
+      <div className="text-center m-20">
         <h1 className="text-3xl font-bold mb-2 tracking-wide">
           Best Seller Gaming PC
         </h1>
         <p className="text-2xl font-bold tracking-wide">Prebuilt & Custom</p>
-        <div className="flex justify-end items-center text-bold">
-          <button
-            onClick={() => changeSlide("left")}
-            type="button"
-            className="border-slate-100 shadow-custom m-2 w-45 h-45"
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-          <button
-            onClick={() => changeSlide("right")}
-            type="button"
-            className="border-slate-100 shadow-custom w-45 h-45"
-          >
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        </div>
-        <div className="flex flex-nowrap m-2">
-          {cardsToDisplay.map((card) => (
-            <Card
-              key={card.name}
-              card={{ ...card, buttonType: getButtonType(card.type) }}
-            />
+        <div className="overflow-x-auto flex flex-nowrap m-2" style={{ width: '1300px' }}>
+          {cardObjectList.map((card) => (
+            <div key={card.name} className="inline-block" style={{ width: '325px', flex: '0 0 auto', paddingRight:'10px' }}>
+              <Card
+                card={{ ...card, buttonType: getButtonType(card.type) }}
+              />
+            </div>
           ))}
         </div>
       </div>
     );
   };
+  
 
   const mobileDisplay = () => (
     <div className="flex overflow-x-auto w-full" {...swipeHandlers}>
